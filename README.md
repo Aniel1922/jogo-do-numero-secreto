@@ -1,104 +1,55 @@
-// Declara um array vazio para armazenar os números já sorteados.
-let listaDeNumerosSorteados = [];
-// Define o número máximo que pode ser sorteado.
-let numeroLimite = 10;
-// Gera o número secreto aleatório.
-let numeroSecreto = gerarNumeroAleatorio();
-// Inicializa o número de tentativas.
-let tentativas = 1;
+# Jogo do Número Secreto
 
-// Função para exibir texto em uma tag HTML e falar o texto usando o responsiveVoice.
-function exibirTextoNaTela(tag, texto){
-    // Seleciona o elemento HTML pela tag.
-    let campo = document.querySelector(tag);
-    // Define o texto do elemento HTML.
-    campo.innerHTML = texto;
-    // Usa o responsiveVoice para falar o texto.
-    responsiveVoice.speak(texto, 'Brazilian Portuguese Female', {rate:1.2});
-}
+Este é um jogo simples de adivinhação de números, onde o jogador tenta adivinhar um número secreto gerado aleatoriamente pelo computador. O jogo oferece dicas ao jogador, informando se o número secreto é maior ou menor que o chute do jogador. O jogo termina quando o jogador acerta o número secreto.
 
-// Função para exibir a mensagem inicial do jogo.
-function exibirMensagemInicial(){
-    // Exibe o título do jogo.
-    exibirTextoNaTela('h1', 'Jogo do número secreto');
-    // Exibe a instrução para o jogador.
-    exibirTextoNaTela('p', 'Escolha um número de 1 a 10');
-}
+## Como Jogar
 
-// Chama a função para exibir a mensagem inicial.
-exibirMensagemInicial();
+1. O jogador insere um número no campo de entrada.
+2. O jogador clica no botão "Chutar".
+3. O jogo verifica se o número inserido é igual ao número secreto.
+4. Se o número estiver correto, o jogo exibe uma mensagem de parabéns e informa o número de tentativas utilizadas.
+5. Se o número estiver incorreto, o jogo informa se o número secreto é maior ou menor que o chute do jogador.
+6. O jogador pode continuar tentando até acertar o número secreto.
+7. Para reiniciar o jogo, o jogador clica no botão "Reiniciar".
 
-// Função para verificar o chute do jogador.
-function verificarChute(){
-    // Obtém o valor do chute do jogador do campo de entrada.
-    let chute = document.querySelector('input').value;
+## Funcionalidades
 
-    // Verifica se o chute é igual ao número secreto.
-    if(chute == numeroSecreto){
-        // Exibe a mensagem de parabéns.
-        exibirTextoNaTela('h1', 'Acertou!');
-        // Determina se a palavra "tentativa" deve ser usada no singular ou plural.
-        let palavraTentativa = tentativas > 1 ? 'tentativas' : 'tentativa';
-        // Cria a mensagem com o número de tentativas.
-        let mensagemTentativas = `Você descobriu o número secreto com ${tentativas} ${palavraTentativa}!`;
-        // Exibe a mensagem com o número de tentativas.
-        exibirTextoNaTela('p', mensagemTentativas);
-        // Remove o atributo "disabled" do botão "Reiniciar".
-        document.getElementById('reiniciar').removeAttribute('disabled');
-    }else{
-        // Verifica se o chute é maior que o número secreto.
-        if(chute > numeroSecreto){
-            // Exibe a mensagem "O número secreto é menor".
-            exibirTextoNaTela('p', 'O número secreto é menor');
-        }else{
-            // Exibe a mensagem "O número secreto é maior".
-            exibirTextoNaTela('p', 'O número secreto é maior');
-        }
-        // Incrementa o número de tentativas.
-        tentativas++;
-        // Limpa o campo de entrada.
-        limparCampo();
-    }
-}
+* **Geração de número aleatório:** O jogo gera um número secreto aleatório entre 1 e 10.
+* **Dicas:** O jogo fornece dicas ao jogador, informando se o número secreto é maior ou menor que o chute do jogador.
+* **Controle de tentativas:** O jogo conta o número de tentativas utilizadas pelo jogador para adivinhar o número secreto.
+* **Reiniciar jogo:** O jogador pode reiniciar o jogo a qualquer momento, clicando no botão "Reiniciar".
+* **Voz:** O jogo utiliza a biblioteca ResponsiveVoice para falar as mensagens na tela.
 
-// Função para gerar um número aleatório.
-function gerarNumeroAleatorio(){
-    // Gera um número aleatório entre 1 e o número limite.
-    let numeroEscolhido = parseInt(Math.random() * numeroLimite + 1);
-    // Obtém a quantidade de números já sorteados.
-    let quantidadeDeElementosNaLista =  listaDeNumerosSorteados.length;
+## Tecnologias Utilizadas
 
-    // Verifica se todos os números já foram sorteados.
-    if(quantidadeDeElementosNaLista == numeroLimite){
-        // Limpa a lista de números sorteados.
-        listaDeNumerosSorteados = [];
-    }
-    // Adiciona o número escolhido à lista de números sorteados.
-    listaDeNumerosSorteados.push(numeroEscolhido);
-    // Exibe a lista de números sorteados no console.
-    console.log(listaDeNumerosSorteados);
-    // Retorna o número escolhido.
-    return numeroEscolhido;
-}
+* **HTML:** Utilizado para criar a estrutura da página web.
+* **CSS:** Utilizado para estilizar a página web.
+* **JavaScript:** Utilizado para adicionar interatividade à página web e implementar a lógica do jogo.
+* **ResponsiveVoice:** Utilizado para adicionar voz às mensagens do jogo.
 
-// Função para limpar o campo de entrada.
-function limparCampo(){
-    // Seleciona o campo de entrada.
-    chute = document.querySelector('input');
-    // Define o valor do campo de entrada como vazio.
-    chute.value = '';
-}
+## Como Executar o Jogo
 
-// Função para reiniciar o jogo.
-function reiniciarJogo(){
-    // Gera um novo número secreto.
-    numeroSecreto = gerarNumeroAleatorio();
-    // Limpa o campo de entrada.
-    limparCampo();
-    // Reseta o número de tentativas.
-    tentativas = 1;
-    // Exibe a mensagem inicial do jogo.
-    exibirMensagemInicial();
-    // Define o atributo "disabled" do botão "Reiniciar" como verdadeiro.
-    document.getElementById('reiniciar').setAttribute('disabled', true);
-}
+1. Clone o repositório.
+2. Abra o arquivo `index.html` em seu navegador.
+
+## Arquivos
+
+* **index.html:** Arquivo principal do jogo, contendo a estrutura HTML e incluindo os arquivos CSS e JavaScript.
+* **style.css:** Arquivo CSS contendo os estilos da página web.
+* **script.js:** Arquivo JavaScript contendo a lógica do jogo.
+
+## Observações
+
+* O jogo utiliza a biblioteca ResponsiveVoice para adicionar voz às mensagens. Certifique-se de que seu navegador suporta essa biblioteca.
+* O jogo foi testado nos navegadores Google Chrome e Mozilla Firefox.
+
+## Próximos Passos
+
+* Adicionar mais funcionalidades ao jogo, como níveis de dificuldade e placar de pontuação.
+* Melhorar a interface gráfica do jogo.
+* Adicionar suporte para outros idiomas.
+
+## Autor
+
+* [Esse projeto faz parte de um dos cursos da Alura]
+
