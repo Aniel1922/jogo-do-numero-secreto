@@ -10,7 +10,7 @@ function exibirTextoNaTela(tag, texto){
 }
 
 function exibirMensagemInicial(){
-    exibirTextoNaTela('h1', 'JOGO DO NÚMERO');
+    exibirTextoNaTela('h1', 'JOGO DO NÚMERO SECRETO');
     exibirTextoNaTela('p', 'Escolha um número de 1 a 10');
 }
 
